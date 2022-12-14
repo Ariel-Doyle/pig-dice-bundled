@@ -3,25 +3,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 
 function diceRoll() {
-  return Math.floor((Math.random() * 6) + 1);
+  /*return Math.floor((Math.random() * 6) + 1);*/
 }
 
 //Business Logic
 
 function GameState() {
-  this.score = [0,0];
+  /*this.score = [0,0];
   this.player = 0;
   this.turnScore = 0;
   this.diceResult = 0;
-  this.rollHistory = [];
-};
+  this.rollHistory = [];*/
+}
 
 GameState.prototype.switchPlayers = function() {
   this.turnScore = 0;
   this.player += 1;
   this.player = this.player%2;
   this.rollHistory = [];
-}
+};
 
 GameState.prototype.rollDice = function() {
   this.diceResult = diceRoll();
@@ -34,12 +34,12 @@ GameState.prototype.rollDice = function() {
       return ("The Winner Is " + this.player + "!");
     }
   }
-}
+};
 
 GameState.prototype.hold = function() {
   this.score[this.player] += this.turnScore;
   this.switchPlayers();
-}
+};
 
 //UI Logic
 let gameState = new GameState();
@@ -47,25 +47,25 @@ let gameState = new GameState();
 function handleRoll() {
   gameState.rollDice();
   let rollScore = gameState.rollHistory;
-  console.log(gameState.diceResult);
+  //console.log(gameState.diceResult);
   if (gameState.player === 0) {
     document.querySelector("span#player1Roll").innerText = rollScore;
   } else if (gameState.player === 1) {
     document.querySelector("span#player2Roll").innerText = rollScore;
   }
-};
+}
 
 function handleHold() {
   gameState.hold();
   let scoreTotal = gameState.score;
-  console.log(scoreTotal);
+  //console.log(scoreTotal);
   document.querySelector("span#player1Score").innerText = scoreTotal[0];
   document.querySelector("span#player2Score").innerText = scoreTotal[1];
-};
+}
 
 window.addEventListener("load", function(e) {
   e.preventDefault();
-  const newGameBtn = document.getElementsByClassName("new-game");
+  //const newGameBtn = document.getElementsByClassName("new-game");
   const rollBtn = document.getElementById("roll");
   const holdBtn = document.getElementById("hold");
 
